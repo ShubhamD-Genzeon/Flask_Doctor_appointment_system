@@ -70,8 +70,6 @@ def booking():
     doctor_id = request.args.get('doctor_id')
     patient_id = request.args.get('patient_id')
     return render_template('booking.html', doctor_id=doctor_id, patient_id=patient_id)
-from flask import request
-from datetime import datetime
 
 @app.route('/confirm_appointment', methods=['POST'])
 def confirm_appointment():
