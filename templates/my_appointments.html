@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Appointments</title>
+    <style>
+      /* Body styling */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: rgba(24, 149, 227, 0.9);
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Card container */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 40px; /* Increased padding */
+        margin-top: 20px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent white background */
+        border-radius: 20px; /* Rounded corners */
+      }
+
+      /* Individual card */
+      .card {
+        width: 350px; /* Increased card width */
+        background-color: #f9f9f9;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease; /* Smooth transition */
+      }
+
+      /* Hover effect */
+      .card:hover {
+        transform: scale(1.05); /* Zoom in on hover */
+      }
+
+      /* Doctor's name */
+      .doctor-name {
+        font-size: 24px; /* Increased font size */
+        font-weight: bold;
+        color: #007bff; /* Blue color */
+        margin-bottom: 10px;
+        transition: color 0.3s ease; /* Smooth transition */
+      }
+
+      /* Hover effect */
+      .doctor-name:hover {
+        color: #004085; /* Darker blue color */
+      }
+
+      /* Specialization */
+      .specialization {
+        font-size: 18px; /* Increased font size */
+        color: #333;
+        margin-bottom: 10px;
+        transition: color 0.3s ease; /* Smooth transition */
+      }
+
+      /* Hover effect */
+      .specialization:hover {
+        color: #6610f2; /* Purple color */
+      }
+
+      /* Qualification */
+      .qualification {
+        font-size: 16px; /* Increased font size */
+        color: #555;
+        margin-bottom: 10px;
+        transition: color 0.3s ease; /* Smooth transition */
+      }
+
+      /* Hover effect */
+      .qualification:hover {
+        color: #6f42c1; /* Dark purple color */
+      }
+
+      /* Appointment date and time */
+      .appointment-details {
+        font-size: 16px;
+        color: #444;
+        transition: color 0.3s ease; /* Smooth transition */
+      }
+
+      /* Hover effect */
+      .appointment-details:hover {
+        color: #28a745; /* Green color */
+      }
+
+      /* No appointments message */
+      .no-appointments {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    {% if appointments %}
+    <div class="card-container">
+      {% for appointment, doctor in appointments %}
+      <div class="card">
+        <div class="doctor-name">{{ doctor.name }}</div>
+        <div class="specialization">{{ doctor.specialization }}</div>
+        <div class="qualification">{{ doctor.doctor_quali }}</div>
+        <div class="appointment-details">
+          <div>
+            {{ appointment.AppointmentDateTime.strftime('%Y-%m-%d %I:%M %p') }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-appointments">You have no appointments.</div>
+    {% endif %}
+  </body>
+</html>
